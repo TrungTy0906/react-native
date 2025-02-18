@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+
 export default function App() {
 
   const [todo, setTodo] = useState("");
@@ -33,37 +35,35 @@ export default function App() {
       <Text style = {styles.text} >
         Hoc React Native
       </Text>
-       
        {/* form  */}
-    <View style = {styles.body} >
-      <TextInput
-        value={todo}
-        onChangeText={(value) => setTodo(value)}
-        style = {styles.textInput} />
-      <Button title='Add todo' 
-      onPress={handleAddTodo}/>
+      <View style = {styles.form} >
+        <TextInput
+          value={todo}
+          onChangeText={(value) => setTodo(value)}
+          style = {styles.textInput} />
+        <Button title='Add todo' 
+          onPress={handleAddTodo}/>
+      </View>
+      {/* list todo */}
+      <View style = {styles.list} > 
+        <FlatList
+          data={listTodo}
+          renderItem={(data) => {
+            return(
+              <Pressable 
+                onPress={() => deleteTodo(data.item.id)} 
+                style = {({pressed}) => ({opacity : pressed ? 0.5 : 1})}
+              >
+                <View style = {styles.todo} >
+                  <Text style = {styles.itemInList} >{data.item.name}</Text>
+                  <FontAwesome5 name="trash" size={24} color="black" />
+                </View>
+              </Pressable>
+            )
+          } }
+        />
+      </View>
     </View>
-
-    {/* list todo */}
-    <View style = {styles.body} > 
-      <FlatList
-        data={listTodo}
-        renderItem={(data) => {
-          return(
-            <Pressable 
-              onPress={() => deleteTodo(data.item.id)} 
-              style = {({pressed}) => ({opacity : pressed ? 0.5 : 1})}
-            >
-              <Text style = {styles.itemInList} >{data.item.name}</Text>
-            </Pressable>
-          )
-        } }
-      />
-    </View>
-    
-    </View>
-
-    
   );
 }
 
@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingHorizontal: 20,
     backgroundColor: '#fff',
+    // borderWidth: 2,
+    // borderColor: 'green'
     // alignItems: 'center',
     // justifyContent: 'center',
   },
@@ -98,8 +100,18 @@ const styles = StyleSheet.create({
   },
   itemInList: {
     fontSize: 30,
+  },
+  form: {
+  },
+  list: {
+    flex: 1,
+  },
+  todo: {
+    flexDirection: 'row',
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'space-between',
     borderWidth: 1,
     borderStyle: 'dashed',
-    marginVertical: 20,
-  }
+  },
 });
