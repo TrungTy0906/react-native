@@ -14,6 +14,7 @@ import {useEffect} from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppNavigation from './components/navigation/app.navigation';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -34,7 +35,7 @@ export default function App() {
     return null;
   }
 
-  const Stack = createNativeStackNavigator<RootStackParamList>();
+
 
   return(
     // <View>
@@ -43,10 +44,7 @@ export default function App() {
     //   <AboutScreen/>
     // </View>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="home" component={HomeScreen}  options={{title: 'Trang chủ'}}/>
-        <Stack.Screen name='review-detail' component={DetailScreen}/>
-      </Stack.Navigator>
+        <AppNavigation/>
     </NavigationContainer>
   );
 }
