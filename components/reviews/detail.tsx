@@ -1,8 +1,9 @@
-import {Button, StyleSheet, Text, View } from "react-native";
+import {Button, Image, StyleSheet, Text, View } from "react-native";
 import { OPENSANS_REGULAR } from "../../utils/const";
 import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-
+import AppHeader from "../navigation/app.header";
+import starImage from "../../assets/images/star.png"
 const DetailScreen = () => {
 
     const navigation: NavigationProp<RootStackParamList> = useNavigation();
@@ -17,6 +18,18 @@ const DetailScreen = () => {
 
             <Text>{route.params?.star}</Text>
 
+            <View style = {{flexDirection: 'row', gap: 15}} >
+                <Image source={starImage}
+                style = {{height: 50, width:50}} />
+                <Image source={starImage}
+                style = {{height: 50, width:50}} />
+                <Image source={starImage}
+                style = {{height: 50, width:50}} />
+                <Image source={starImage}
+                style = {{height: 50, width:50}} />
+                <Image source={starImage}
+                style = {{height: 50, width:50}} />
+            </View>
             <Button title="Go home" onPress={() => navigation.navigate('home')}/>
         </View>
     )

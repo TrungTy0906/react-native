@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, FlatList, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, Pressable, SafeAreaViewBase, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import HomeScreen from './components/reviews/home';
@@ -15,7 +15,7 @@ import {useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppNavigation from './components/navigation/app.navigation';
-
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,21 +34,17 @@ export default function App() {
   if (!loaded && !error) {
     return null;
   }
-
-
-
   return(
-    // <View>
-    //   <HomeScreen/>
-    //   <DetailScreen/>
-    //   <AboutScreen/>
-    // </View>
-    <NavigationContainer>
+    <SafeAreaView style = {styles.container} >
+      <NavigationContainer>
         <AppNavigation/>
     </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+  }
 });
