@@ -44,7 +44,7 @@ export default function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="home" component={HomeScreen}  options={{title: ''}}/>
+        <Stack.Screen name="home" component={HomeScreen}  options={{title: 'Trang chủ'}}/>
         <Stack.Screen name='review-detail' component={DetailScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
