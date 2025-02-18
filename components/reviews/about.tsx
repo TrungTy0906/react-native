@@ -3,7 +3,7 @@ import {Text, View } from "react-native";
 const AboutScreen = () => {
     return (
         <View>
-            <Text>Hello Home Screen</Text>
+            <Text style = {{fontSize: 30}} >Hello About Screen google</Text>
         </View>
     )
 }
